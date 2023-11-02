@@ -44,7 +44,7 @@
       </v-chip>
     </v-chip-group>
 
-      <v-chip-group
+    <v-chip-group
         v-if="selectedDate"
         column
         class="text-center"
