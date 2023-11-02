@@ -88,7 +88,7 @@
       <v-card>
         <v-card-title class="headline">Reservation Confirmation</v-card-title>
         <v-card-text>
-          Your reservation has been confirmed.
+          Your reservation has been confirmed!!
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" @click="dialogForConfirmation = false">Close</v-btn>
@@ -110,11 +110,6 @@
 
 <style>
 @media (min-width: 1024px) {
-  /* .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  } */
   .custom-card {
   padding: 30px;
 }
@@ -122,7 +117,6 @@
 </style>
 
 <script>
-import { ref } from 'vue';
 import axios from 'axios';
 
 export default {

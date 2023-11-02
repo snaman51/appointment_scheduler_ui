@@ -27,6 +27,7 @@
     </v-card-title>
     <v-card-text>
       <v-chip-group>
+        <v-chip v-if="Object.keys(dateToTimeRanges).length === 0" :disabled="true">No Slots Available</v-chip>
       <v-chip
         v-for="(timeSlots, date) in dateToTimeRanges"
         :key="date"
@@ -51,7 +52,6 @@
       </v-chip-group >
     </v-card-text>
 
-    <!-- <v-card-actions class="justify-center"> -->
       <v-row class="justify-center">
       <v-btn
       outlined
@@ -64,7 +64,6 @@
         Cancel Reservation
       </v-btn>
     </v-row>
-    <!-- </v-card-actions> -->
   </v-form>
   </v-card>
   </div>
@@ -72,7 +71,7 @@
       <v-card>
         <v-card-title class="headline">Reservation Cancellation</v-card-title>
         <v-card-text>
-          If the email was used for a reservation, it has been canceled.
+          Your reservation has been cancelled!!
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" @click="dialog = false">Close</v-btn>
@@ -83,11 +82,6 @@
 
 <style>
 @media (min-width: 1024px) {
-  /* .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  } */
   .custom-card {
   padding: 30px;
 }
@@ -95,7 +89,6 @@
 </style>
 
 <script>
-import { ref } from 'vue';
 import axios from 'axios';
 import { debounce } from 'lodash';
 
