@@ -124,7 +124,6 @@ export default {
     async getReservedSlots() {
       try {
         this.dateToTimeRanges={}
-        console.log("Email", this.email)
         const response = await axios.get(`http://localhost:8080/schedule/reservationsbyemail?email=${this.email}`);
         response.data.forEach(item => {
           const startTime = `${item.startTime[3]}:${String(item.startTime[4]).padStart(2, '0')}`;
@@ -139,7 +138,6 @@ export default {
           }
         });
         
-        console.log('API data:', this.dateToTimeRanges);
       } catch (error) {
         console.error('Error:', error);
       }
@@ -155,7 +153,6 @@ export default {
 
       axios.delete('http://localhost:8080/schedule/deletereservation', { data: {startTime: this.selectedStartTime, endTime: this.selectedEndTime, email: this.email}})
         .then(async(response) => {
-          console.log('Response:', response.data);
           this.dialog=true;
           await this.getReservedSlots();
         })
@@ -170,7 +167,6 @@ export default {
     },
     selectTime(time) {
       this.selectedTime = time;
-      console.log(this.selectedTime, time)
     }
   }
     

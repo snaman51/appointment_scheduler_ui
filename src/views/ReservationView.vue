@@ -155,8 +155,6 @@ export default {
   },
   methods: {
     validateTime() {
-      console.log("Selected start time", this.selectedStartTime, this.selectedTime)
-      console.log("Selected End time", this.selectedEndTime, this.selectedTime)
       if(this.selectedStartTime.split(":")[0]<this.selectedTime.split("-")[0].split(":")[0] || this.selectedStartTime.split(":")[1]<this.selectedTime.split("-")[0].split(":")[1]){
         this.dialogIncorrectSlot = true;
       }
@@ -168,8 +166,6 @@ export default {
       }
     },
     createReservation() {
-      console.log("Time from selector",this.selectedStartTime, this.selectedEndTime)
-
       if(this.modifySlot){
         this.selectedStartTime = this.selectedDate+"T"+this.selectedStartTime.trim()+":00.000"
         this.selectedEndTime = this.selectedDate+"T"+this.selectedEndTime.trim()+":00.000"
@@ -178,17 +174,11 @@ export default {
       this.selectedStartTime = this.selectedDate+"T"+this.selectedTime.split("-")[0].trim()+":00.000"
       this.selectedEndTime = this.selectedDate+"T"+this.selectedTime.split("-")[1].trim()+":00.000"
     }
-
-      console.log(this.selectedStartTime, this.selectedEndTime, this.email, this.title)
-
       axios.post('http://localhost:8080/schedule/createreservation', { startTime: this.selectedStartTime, endTime: this.selectedEndTime, email: this.email, title:this.title})
         .then(async(response) => {
-          console.log('Response:', response.data);
-          console.log('Before loadAvailabilities');
           this.dialogForConfirmation=true;
           await this.loadAvailabilities();
-          console.log('After loadAvailabilities');
-        })
+                })
         .catch(error => {
           console.error('Error:', error);
         });
@@ -212,7 +202,6 @@ export default {
           }
         });
         
-        console.log('API data:', this.dateToTimeRanges);
       } catch (error) {
         console.error('Error:', error);
       }
@@ -223,7 +212,6 @@ export default {
     },
     selectTime(time) {
       this.selectedTime = time;
-      console.log(this.selectedTime, time)
     }
   
   },
